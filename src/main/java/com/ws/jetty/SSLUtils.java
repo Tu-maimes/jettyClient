@@ -16,9 +16,6 @@
  */
 package com.ws.jetty;
 
-import org.apache.kafka.common.config.SslConfigs;
-import org.apache.kafka.common.config.internals.BrokerSecurityConfigs;
-import org.apache.kafka.common.config.types.Password;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 
 import java.util.Arrays;
@@ -149,7 +146,7 @@ public class SSLUtils {
      */
     @SuppressWarnings("deprecation")
     protected static void configureSslContextFactoryAuthentication(SslContextFactory ssl, Map<String, Object> sslConfigValues) {
-        String sslClientAuth = (String) getOrDefault(sslConfigValues, BrokerSecurityConfigs.SSL_CLIENT_AUTH_CONFIG, "none");
+        String sslClientAuth = (String) getOrDefault(sslConfigValues, SecurityConfig.SSL_CLIENT_AUTH_CONFIG, "none");
         switch (sslClientAuth) {
             case "requested":
                 ssl.setWantClientAuth(true);
